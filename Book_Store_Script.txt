@@ -1,0 +1,75 @@
+DROP DATABASE IF EXISTS Book_Store;
+CREATE DATABASE Book_Store;
+USE Book_Store;
+
+CREATE TABLE `Books`
+(
+	`book_id` INT NOT NULL AUTO_INCREMENT, 
+    `isbn` VARCHAR(30) NOT NULL,
+    `book_title` VARCHAR(100) NOT NULL, 
+    `book_description` VARCHAR(300),
+	`publisher_id` INT NOT NULL,
+    `publish_date` DATE NOT NULL, 
+    `book_price` DECIMAL(5,2) NOT NULL,
+    PRIMARY KEY (`book_id`),
+    KEY (`publisher_id`)
+);
+
+CREATE TABLE `Publishers`
+(
+	`publisher_id` INT NOT NULL AUTO_INCREMENT, 
+    `publisher_name` VARCHAR(45) NOT NULL, 
+    `publisher_location` VARCHAR(45) NOT NULL, 
+    PRIMARY KEY (`publisher_id`)
+);
+
+CREATE TABLE `Authors` 
+(
+	`author_id` INT NOT NULL AUTO_INCREMENT, 
+    `first_name` VARCHAR(30),
+    `middle_name` VARCHAR(30), 
+    `last_name` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`author_id`)
+);
+
+CREATE TABLE `Genres`
+(
+	`genre_id` INT NOT NULL AUTO_INCREMENT,
+    `genre_name` VARCHAR(30) NOT NULL,
+    PRIMARY KEY (`genre_id`)
+);
+
+CREATE TABLE `Books_Authors`
+(
+	`book_author_id` INT NOT NULL AUTO_INCREMENT,
+    `book_id` INT NOT NULL,
+    `author_id` INT NOT NULL,
+    PRIMARY KEY (`book_author_id`),
+    KEY (`book_id`),
+    KEY (`author_id`)
+);
+
+CREATE TABLE `Books_Genres`
+(
+	`book_genre_id` INT NOT NULL AUTO_INCREMENT,
+    `book_id` INT NOT NULL,
+    `genre_id` INT NOT NULL,
+    PRIMARY KEY (`book_genre_id`),
+    KEY (`book_id`),
+    KEY (`genre_id`)
+);
+
+ALTER TABLE `Books`
+ADD CONSTRAINT `books_publishers_fk` FOREIGN KEY (`publisher_id`) REFERENCES `Publishers` (`publisher_id`);
+
+ALTER TABLE `Books_Authors`
+ADD CONSTRAINT `books_authors_books_fk` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`);
+
+ALTER TABLE `Books_Authors`
+ADD CONSTRAINT `books_authors_authors_fk` FOREIGN KEY (`author_id`) REFERENCES `Authors` (`author_id`);
+
+ALTER TABLE `Books_Genres`
+ADD CONSTRAINT `books_genres_books_fk` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`);
+
+ALTER TABLE `Books_Genres`
+ADD CONSTRAINT `books_genres_genres_fk` FOREIGN KEY (`genre_id`) REFERENCES `Genres` (`genre_id`);
