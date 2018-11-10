@@ -1,75 +1,164 @@
-DROP DATABASE IF EXISTS Book_Store;
-CREATE DATABASE Book_Store;
-USE Book_Store;
+
 
 CREATE TABLE `Books`
 (
-	`book_id` INT NOT NULL AUTO_INCREMENT, 
-    `isbn` VARCHAR(30) NOT NULL,
-    `book_title` VARCHAR(100) NOT NULL, 
-    `book_description` VARCHAR(300),
-	`publisher_id` INT NOT NULL,
+	`book_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+    `isbn` TEXT NOT NULL,
+    `book_title` TEXT NOT NULL, 
+    `book_description` TEXT,
+	`publisher_id` INTEGER NOT NULL,
     `publish_date` DATE NOT NULL, 
-    `book_price` DECIMAL(5,2) NOT NULL,
-    PRIMARY KEY (`book_id`),
-    KEY (`publisher_id`)
+    `book_price` NUMERIC NOT NULL,
+	CONSTRAINT `books_publishers_fk` FOREIGN KEY(`publisher_id`) REFERENCES Publishers(`publisher_id`)
 );
 
 CREATE TABLE `Publishers`
 (
-	`publisher_id` INT NOT NULL AUTO_INCREMENT, 
-    `publisher_name` VARCHAR(45) NOT NULL, 
-    `publisher_location` VARCHAR(45) NOT NULL, 
-    PRIMARY KEY (`publisher_id`)
+	`publisher_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+    `publisher_name` TEXT NOT NULL, 
+    `publisher_location` TEXT NOT NULL
 );
 
 CREATE TABLE `Authors` 
 (
-	`author_id` INT NOT NULL AUTO_INCREMENT, 
-    `first_name` VARCHAR(30),
-    `middle_name` VARCHAR(30), 
-    `last_name` VARCHAR(45) NOT NULL,
-    PRIMARY KEY (`author_id`)
+	`author_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, 
+    `first_name` TEXT,
+    `middle_name` TEXT, 
+    `last_name` TEXT NOT NULL
 );
 
 CREATE TABLE `Genres`
 (
-	`genre_id` INT NOT NULL AUTO_INCREMENT,
-    `genre_name` VARCHAR(30) NOT NULL,
-    PRIMARY KEY (`genre_id`)
+	`genre_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    `genre_name` TEXT NOT NULL
 );
 
-CREATE TABLE `Books_Authors`
-(
-	`book_author_id` INT NOT NULL AUTO_INCREMENT,
-    `book_id` INT NOT NULL,
-    `author_id` INT NOT NULL,
-    PRIMARY KEY (`book_author_id`),
-    KEY (`book_id`),
-    KEY (`author_id`)
+CREATE TABLE `Books_Authors` ( 
+	`book_id` INTEGER NOT NULL, 
+	`author_id` INTEGER NOT NULL, 
+	CONSTRAINT `book_author_pk` PRIMARY KEY(`book_id`, `author_id`), 
+	CONSTRAINT `books_authors_books_fk` FOREIGN KEY(`book_id`) REFERENCES Books(`book_id`), 
+	CONSTRAINT `books_authors_authors_fk` FOREIGN KEY(`author_id`) REFERENCES Authors(`author_id`) 
 );
+
 
 CREATE TABLE `Books_Genres`
 (
-	`book_genre_id` INT NOT NULL AUTO_INCREMENT,
-    `book_id` INT NOT NULL,
-    `genre_id` INT NOT NULL,
-    PRIMARY KEY (`book_genre_id`),
-    KEY (`book_id`),
-    KEY (`genre_id`)
+    `book_id` INTEGER NOT NULL,
+    `genre_id` INTEGER NOT NULL,
+	CONSTRAINT `book_genre_pk` PRIMARY KEY(`book_id`, `genre_id`), 
+	CONSTRAINT `books_genres_books_fk` FOREIGN KEY(`book_id`) REFERENCES Books(`book_id`), 
+	CONSTRAINT `books_genres_genres_fk` FOREIGN KEY(`genre_id`) REFERENCES Genres(`genre_id`)
 );
 
-ALTER TABLE `Books`
-ADD CONSTRAINT `books_publishers_fk` FOREIGN KEY (`publisher_id`) REFERENCES `Publishers` (`publisher_id`);
 
-ALTER TABLE `Books_Authors`
-ADD CONSTRAINT `books_authors_books_fk` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`);
+insert into Genres (genre_name) values ('Action');
+insert into Genres (genre_name) values ('Adventure');
+insert into Genres (genre_name) values ('Comedy');
+insert into Genres (genre_name) values ('Crime');
+insert into Genres (genre_name) values ('Drama');
+insert into Genres (genre_name) values ('Fantasy');
+insert into Genres (genre_name) values ('Mystery');
+insert into Genres (genre_name) values ('Romance');
+insert into Genres (genre_name) values ('Thriller');
+insert into Genres (genre_name) values ('War');
 
-ALTER TABLE `Books_Authors`
-ADD CONSTRAINT `books_authors_authors_fk` FOREIGN KEY (`author_id`) REFERENCES `Authors` (`author_id`);
+insert into Authors (first_name, middle_name, last_name) values ('Adrian', 'Tandie', 'Kermode');
+insert into Authors (first_name, middle_name, last_name) values ('Wood', 'Lesli', 'Calbreath');
+insert into Authors (first_name, middle_name, last_name) values ('Fannie', 'Sandro', 'Brawn');
+insert into Authors (first_name, middle_name, last_name) values ('Jerrie', 'Clemmie', 'Streets');
+insert into Authors (first_name, middle_name, last_name) values ('Meade', 'Barnabe', 'Magauran');
+insert into Authors (first_name, middle_name, last_name) values ('Faber', 'Lorrie', 'Nicolson');
+insert into Authors (first_name, middle_name, last_name) values ('Mile', 'Paolina', 'Averill');
+insert into Authors (first_name, middle_name, last_name) values ('Keane', 'Ailee', 'Charity');
+insert into Authors (first_name, middle_name, last_name) values ('Genna', 'Bellina', 'Sidebotham');
+insert into Authors (first_name, middle_name, last_name) values ('Alisha', 'Vitoria', 'Royan');
+insert into Authors (first_name, middle_name, last_name) values ('Matilde', 'Aeriel', 'Darnborough');
+insert into Authors (first_name, middle_name, last_name) values ('Ermanno', 'Davida', 'Rosin');
+insert into Authors (first_name, middle_name, last_name) values ('Oona', 'Marilee', 'Venables');
+insert into Authors (first_name, middle_name, last_name) values ('Elwyn', 'Allianora', 'Prue');
+insert into Authors (first_name, middle_name, last_name) values ('Zared', 'Cordy', 'Wayland');
+insert into Authors (first_name, middle_name, last_name) values ('Dotti', 'Kirbie', 'Salisbury');
+insert into Authors (first_name, middle_name, last_name) values ('Annemarie', 'Leanor', 'Whitmore');
+insert into Authors (first_name, middle_name, last_name) values ('Darbee', 'Osmond', 'Thon');
+insert into Authors (first_name, middle_name, last_name) values ('Binny', 'Hildagarde', 'Esseby');
+insert into Authors (first_name, middle_name, last_name) values ('Cale', 'Jany', 'Kobsch');
+insert into Authors (first_name, middle_name, last_name) values ('Millicent', 'Quincy', 'Carlisso');
+insert into Authors (first_name, middle_name, last_name) values ('Stephenie', 'Tonie', 'Elcomb');
+insert into Authors (first_name, middle_name, last_name) values ('Neron', 'Tracie', 'Pech');
+insert into Authors (first_name, middle_name, last_name) values ('Horatio', 'Julina', 'Rowlson');
+insert into Authors (first_name, middle_name, last_name) values ('Ellissa', 'Cammi', 'Kornousek');
+insert into Authors (first_name, middle_name, last_name) values ('Humphrey', 'Sherwynd', 'Rivelon');
+insert into Authors (first_name, middle_name, last_name) values ('Gerard', 'Marc', 'Treswell');
+insert into Authors (first_name, middle_name, last_name) values ('Rudolfo', 'Iseabal', 'Wollard');
+insert into Authors (first_name, middle_name, last_name) values ('Janel', 'Patrice', 'Prowse');
+insert into Authors (first_name, middle_name, last_name) values ('Pall', 'Humfrey', 'Burnsides');
+insert into Authors (first_name, middle_name, last_name) values ('Kariotta', 'Lindi', 'Batterham');
+insert into Authors (first_name, middle_name, last_name) values ('Eugenius', 'Glynnis', 'Baake');
+insert into Authors (first_name, middle_name, last_name) values ('Aubine', 'Christean', 'Whalley');
+insert into Authors (first_name, middle_name, last_name) values ('Annabella', 'Harriette', 'Rosenstengel');
+insert into Authors (first_name, middle_name, last_name) values ('Derrick', 'Vince', 'Moulin');
+insert into Authors (first_name, middle_name, last_name) values ('Kristopher', 'Michelle', 'Maxworthy');
+insert into Authors (first_name, middle_name, last_name) values ('Dante', 'Stephanus', 'Garbett');
+insert into Authors (first_name, middle_name, last_name) values ('Belle', 'Modestine', 'Dewicke');
+insert into Authors (first_name, middle_name, last_name) values ('Hertha', 'Esme', 'Wegenen');
+insert into Authors (first_name, middle_name, last_name) values ('Dredi', 'Britt', 'Plowman');
+insert into Authors (first_name, middle_name, last_name) values ('Wallis', 'Darrin', 'Lapworth');
+insert into Authors (first_name, middle_name, last_name) values ('Verine', 'Leeanne', 'Getcliff');
+insert into Authors (first_name, middle_name, last_name) values ('Eberhard', 'Carri', 'Pratten');
+insert into Authors (first_name, middle_name, last_name) values ('Gill', 'Heindrick', 'Odd');
+insert into Authors (first_name, middle_name, last_name) values ('Alanson', 'Josephine', 'Gerren');
+insert into Authors (first_name, middle_name, last_name) values ('Oriana', 'Noby', 'Retter');
+insert into Authors (first_name, middle_name, last_name) values ('Gerhardine', 'Karlens', 'Swanwick');
+insert into Authors (first_name, middle_name, last_name) values ('Ximenez', 'Maxy', 'Lesor');
+insert into Authors (first_name, middle_name, last_name) values ('Tim', 'Taddeo', 'Ensley');
+insert into Authors (first_name, middle_name, last_name) values ('Calvin', 'Bing', 'Saffin');
 
-ALTER TABLE `Books_Genres`
-ADD CONSTRAINT `books_genres_books_fk` FOREIGN KEY (`book_id`) REFERENCES `Books` (`book_id`);
+insert into Publishers (publisher_name, publisher_location) values ('DuBuque-Wolf', 'Vimmerby');
+insert into Publishers (publisher_name, publisher_location) values ('Olson-Lesch', 'Bueng Khong Long');
+insert into Publishers (publisher_name, publisher_location) values ('Runte and Sons', 'Malanów');
+insert into Publishers (publisher_name, publisher_location) values ('Greenfelder Inc', 'Boende');
+insert into Publishers (publisher_name, publisher_location) values ('Greenholt-Lang', 'Laojun');
+insert into Publishers (publisher_name, publisher_location) values ('Hauck Group', 'Dalmacio Vélez Sársfield');
+insert into Publishers (publisher_name, publisher_location) values ('White, Paucek and O''Hara', 'Tarbes');
+insert into Publishers (publisher_name, publisher_location) values ('Kunze LLC', 'Xuebu');
+insert into Publishers (publisher_name, publisher_location) values ('Kuhic, Mosciski and Harvey', 'Sergach');
+insert into Publishers (publisher_name, publisher_location) values ('Streich-Kuhic', 'Marantao');
+insert into Publishers (publisher_name, publisher_location) values ('Torp-Langworth', 'Bordeaux');
+insert into Publishers (publisher_name, publisher_location) values ('Hintz, Fritsch and Mertz', 'Retorta');
+insert into Publishers (publisher_name, publisher_location) values ('Balistreri, Schamberger and Kris', 'Bełk');
+insert into Publishers (publisher_name, publisher_location) values ('Prohaska Group', 'Vailoatai');
+insert into Publishers (publisher_name, publisher_location) values ('Bosco-Tillman', 'Kalývia');
 
-ALTER TABLE `Books_Genres`
-ADD CONSTRAINT `books_genres_genres_fk` FOREIGN KEY (`genre_id`) REFERENCES `Genres` (`genre_id`);
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('928736018-9', 'Riot Club, The', 'ligula sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse', 1, '02/20/2018', '$97.94');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('235537572-0', 'Frontrunners', 'in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum', 3, '07/11/2018', '$24.26');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('074423785-8', 'Bay of Blood (a.k.a. Twitch of the Death Nerve) (Reazione a catena)', 'justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus in', 2, '10/19/2018', '$34.66');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('456447988-1', 'Steak', 'magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere', 13, '03/01/2018', '$68.29');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('789263684-6', 'Close My Eyes', 'feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl', 12, '07/10/2018', '$6.25');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('268042326-7', 'Tango Kabaree', 'ipsum dolor sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien', 8, '05/11/2018', '$91.40');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('687371390-2', 'Descent: Part 2, The', 'sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec', 6, '07/13/2018', '$55.80');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('202728821-X', 'Une étudiante d''aujourd''hui', 'faucibus orci luctus et ultrices posuere cubilia curae donec pharetra', 15, '03/29/2018', '$4.47');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('739243535-3', 'My Sister Eileen', 'libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel', 8, '06/08/2018', '$59.15');
+insert into Books (isbn, book_title, book_description, publisher_id, publish_date, book_price) values ('331851787-9', 'Piranha', 'sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at feugiat non', 10, '07/15/2018', '$17.89');
+
+insert into Books_Authors (book_id, author_id) values (1, 35);
+insert into Books_Authors (book_id, author_id) values (2, 25);
+insert into Books_Authors (book_id, author_id) values (3, 44);
+insert into Books_Authors (book_id, author_id) values (4, 15);
+insert into Books_Authors (book_id, author_id) values (5, 7);
+insert into Books_Authors (book_id, author_id) values (6, 49);
+insert into Books_Authors (book_id, author_id) values (7, 35);
+insert into Books_Authors (book_id, author_id) values (8, 21);
+insert into Books_Authors (book_id, author_id) values (9, 45);
+insert into Books_Authors (book_id, author_id) values (10, 36);
+
+insert into Books_Genres (book_id, genre_id) values (1, 5);
+insert into Books_Genres (book_id, genre_id) values (2, 2);
+insert into Books_Genres (book_id, genre_id) values (3, 6);
+insert into Books_Genres (book_id, genre_id) values (4, 4);
+insert into Books_Genres (book_id, genre_id) values (5, 10);
+insert into Books_Genres (book_id, genre_id) values (6, 6);
+insert into Books_Genres (book_id, genre_id) values (7, 8);
+insert into Books_Genres (book_id, genre_id) values (8, 2);
+insert into Books_Genres (book_id, genre_id) values (9, 9);
+insert into Books_Genres (book_id, genre_id) values (10, 8);

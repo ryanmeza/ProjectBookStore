@@ -1,0 +1,6 @@
+/bookstore-webservice/target
+/bookstore-webservice/*.iml
+/bookstore-webservice/.idea
+
+/bookstore-web/node_modules
+/bookstore-web/dist
