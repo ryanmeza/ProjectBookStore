@@ -1,8 +1,13 @@
-<p>
-  books works!
-</p>
+<div class="row">
+  <div class="col-sm-3" *ngFor="let book of books" id="bookItem">
+    <div>
+      <img src="{{book.cover}}">
+    </div>
+    <a routerLink="/book-details/1"><b>{{book.title}}</b></a>
+    <br>
+    <a href="#">{{book.author}}</a>
+    <br>
+    {{book.price}}
+  </div>
 
-<div *ngFor="let book of books">
-  <h4>{{book.title}}</h4>
-  {{book.price}}
 </div>

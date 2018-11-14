@@ -8,13 +8,15 @@ import { AboutComponent } from './pages/about/about.component';
 import { BooksComponent } from './pages/books/books.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BookService } from './pages/books/book.service';
+import { BookDetailComponent } from './pages/books/book-detail/book-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     AboutComponent,
-    BooksComponent
+    BooksComponent,
+    BookDetailComponent
   ],
   imports: [
     BrowserModule,
