@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorService } from '../author.service';
+import { AuthorDetail } from '../models/author-detail';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-author-details',
@@ -7,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authorService: AuthorService) { }
 
   ngOnInit() {
   }

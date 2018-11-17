@@ -4,6 +4,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BooksComponent } from './pages/books/books.component';
 import { BookDetailComponent } from './pages/books/book-detail/book-detail.component';
+import { AuthorsComponent } from './pages/authors/authors.component';
+import { AuthorDetailsComponent } from './pages/authors/author-details/author-details.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,14 @@ const routes: Routes = [
   {
     path: 'book-details/:id',
     component: BookDetailComponent
+  },
+  {
+    path: 'authors',
+    component: AuthorsComponent
+  },
+  {
+    path: 'author-details/:id',
+    component: AuthorDetailsComponent
   }
 ];
 
