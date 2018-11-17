@@ -1,5 +1,5 @@
-[{"authorId":1,"cover":"http://dummyimage.com/142x239.jpg/dddddd/000000","title":"After the Reconciliation (Après la réconciliation)","price":"$5.67","genre":"Drama"},
-{"authorId":1,"cover":"http://dummyimage.com/163x236.jpg/dddddd/000000","title":"Drive, He Said","price":"$29.25","genre":"Comedy|Drama"},
-{"authorId":1,"cover":"http://dummyimage.com/196x192.bmp/ff4444/ffffff","title":"Malèna","price":"$17.66","genre":"Drama|Romance|War"},
-{"authorId":1,"cover":"http://dummyimage.com/178x206.bmp/cc0000/ffffff","title":"Super Cops, The","price":"$34.35","genre":"Action|Comedy|Crime|Drama|Thriller"},
-{"authorId":1,"cover":"http://dummyimage.com/241x209.jpg/cc0000/ffffff","title":"The Missouri Breaks","price":"$30.51","genre":"Drama|Western"}]
+[{"authorId":1, "name": "James Keaton", "cover":"http://dummyimage.com/142x239.jpg/dddddd/000000","title":"After the Reconciliation (Après la réconciliation)","price":"$5.67","genre":"Drama"},
+{"authorId":1, "name": "James Keaton", "cover":"http://dummyimage.com/163x236.jpg/dddddd/000000","title":"Drive, He Said","price":"$29.25","genre":"Comedy|Drama"},
+{"authorId":1, "name": "James Keaton", "cover":"http://dummyimage.com/196x192.bmp/ff4444/ffffff","title":"Malèna","price":"$17.66","genre":"Drama|Romance|War"},
+{"authorId":1, "name": "James Keaton", "cover":"http://dummyimage.com/178x206.bmp/cc0000/ffffff","title":"Super Cops, The","price":"$34.35","genre":"Action|Comedy|Crime|Drama|Thriller"},
+{"authorId":1, "name": "James Keaton", "cover":"http://dummyimage.com/241x209.jpg/cc0000/ffffff","title":"The Missouri Breaks","price":"$30.51","genre":"Drama|Western"}]
