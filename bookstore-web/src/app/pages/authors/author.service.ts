@@ -17,8 +17,8 @@ export class AuthorService {
     return this.http.get<Author[]>('assets/authors.json');
   }
 
-  getAuthor(): Observable<AuthorDetail> {
-    return this.http.get<AuthorDetail>('assets/author-detail.json');
+  getAuthorBooks(id: number): Observable<AuthorDetail[]> {
+    return this.http.get<AuthorDetail[]>('assets/author-detail.json');
   }
 
 
