@@ -9,6 +9,8 @@ import { BooksComponent } from './pages/books/books.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BookService } from './pages/books/book.service';
 import { BookDetailComponent } from './pages/books/book-detail/book-detail.component';
+import { AuthorsComponent } from './pages/authors/authors.component';
+import { AuthorDetailsComponent } from './pages/authors/author-details/author-details.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BookDetailComponent } from './pages/books/book-detail/book-detail.compo
     DashboardComponent,
     AboutComponent,
     BooksComponent,
-    BookDetailComponent
+    BookDetailComponent,
+    AuthorsComponent,
+    AuthorDetailsComponent
   ],
   imports: [
     BrowserModule,
