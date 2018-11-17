@@ -6,6 +6,7 @@ import { BooksComponent } from './pages/books/books.component';
 import { BookDetailComponent } from './pages/books/book-detail/book-detail.component';
 import { AuthorsComponent } from './pages/authors/authors.component';
 import { AuthorDetailsComponent } from './pages/authors/author-details/author-details.component';
+import {GenresComponent} from "./pages/genres/genres.component";
 
 const routes: Routes = [
   {
@@ -31,7 +32,12 @@ const routes: Routes = [
   {
     path: 'author-details/:id',
     component: AuthorDetailsComponent
+  },
+  {
+    path: 'genres',
+    component: GenresComponent
   }
+
 ];
 
 @NgModule({

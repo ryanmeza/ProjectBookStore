@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-sm">
+    <mat-list>
+      <h3 mat-subheader>Genres</h3>
+      <mat-list-item *ngFor="let genre of genres">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <h4 mat-line>{{genre.name}}</h4>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
