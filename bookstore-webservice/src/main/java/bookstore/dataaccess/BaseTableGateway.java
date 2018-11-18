@@ -1,4 +1,4 @@
-package bookstore.patterns.datasource.tablegateway;
+package bookstore.dataaccess;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
